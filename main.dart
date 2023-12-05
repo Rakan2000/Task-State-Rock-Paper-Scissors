@@ -16,10 +16,22 @@ class _MyHomePageState extends State<MyHomePage> {
   String RandomHand2 = "rock.png";
   String whoWon = "";
   void rockPapperScissors() {
-    List Hand1 = ["paper.png", "rock.png", "scissors.png"];
-    List Hand2 = ["paper.png", "rock.png", "scissors.png"];
-    String random1 = (Hand1..shuffle()).first;
-    String random2 = (Hand2..shuffle()).first;
+    List<String> hand1 = ["paper.png", "rock.png", "scissors.png"];
+    List<String> hand2 = ["paper.png", "rock.png", "scissors.png"];
+    String random1 = (hand1..shuffle()).first;
+    String random2 = (hand2..shuffle()).first;
+
+    if (random1 == "paper.png" && random2 == "rock.png") {
+      whoWon = "Player 1 Won";
+    } else if (random1 == "scissors.png" && random2 == "paper.png") {
+      whoWon = "Player 1 Won";
+    } else if (random1 == "rock.png" && random2 == "scissors.png") {
+      whoWon = "Player 1 Won";
+    } else if (random1 == random2) {
+      whoWon = "Tie";
+    } else {
+      whoWon = "Player 2 Won";
+    }
 
     setState(() {
       RandomHand1 = random1;
@@ -54,6 +66,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 150,
                     width: 150,
                   ),
+                  SizedBox(
+                    height: 25,
+                  ),
                   const Text(
                     "Player 1",
                     style: TextStyle(fontSize: 18),
@@ -64,6 +79,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     "assets/images/$RandomHand2",
                     height: 150,
                     width: 150,
+                  ),
+                  SizedBox(
+                    height: 25,
                   ),
                   const Text("Player 2", style: TextStyle(fontSize: 18))
                 ])
@@ -79,7 +97,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     backgroundColor: const Color.fromARGB(255, 255, 225, 0),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(2)))),
-            Text("$whoWon"),
+            Text(
+              "$whoWon",
+              style: TextStyle(fontSize: 30),
+            ),
 
             // SizedBox(width: double.infinity),
           ],
